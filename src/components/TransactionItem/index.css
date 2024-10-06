@@ -1,0 +1,28 @@
+/* Write your CSS here */
+.each-transaction-history {
+  display: flex;
+  justify-content: space-between;
+  border-top: 2px dotted #475569;
+  font-family: 'roboto';
+  padding-left: 4px;
+  padding-right: 4px;
+}
+.transaction-text {
+  font-size: 18px;
+  width: 30%;
+}
+.type-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 35%;
+}
+.delete-button {
+  background-color: transparent;
+  border-width: 0px;
+  height: 40px;
+  width: 40px;
+}
+.delete-icon {
+  width: 100%;
+}

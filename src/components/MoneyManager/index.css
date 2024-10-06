@@ -1,0 +1,248 @@
+/* Write your CSS here */
+/* .name-card {
+  background-image: url('https://assets.ccbp.in/frontend/react-js/money-manager/money-manager-bg.png');
+  background-size: cover;
+}
+.money-details-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.list-money-details {
+  border: 1px dotted #475569;
+  width: 30%;
+  height: 160px;
+}
+.transaction-container {
+  display: flex;
+  justify-content: space-between;
+}
+.form-container {
+  border: 1px dotted #475569;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+.history-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px dotted #475569;
+  border-radius: 10px;
+  padding: 10px;
+}
+.histoy-table {
+  border: 2px dotted #475569;
+  border-radius: 10px;
+}
+.column-container {
+  display: flex;
+  justify-content: center;
+}
+.column-name {
+  font-weight: 600;
+  font-size: 22px;
+}
+.input-element {
+  width: 100%;
+} */
+
+.page-container {
+  background-color: #f5f8fc;
+  min-height: 100vh;
+  padding: 30px;
+  font-family: Arial, sans-serif;
+}
+
+.name-card {
+  background-image: url('https://assets.ccbp.in/frontend/react-js/money-manager/money-manager-bg.png');
+  background-size: cover;
+  border-radius: 10px;
+  padding: 15px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.heading {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+}
+
+.welcome-msg {
+  font-size: 16px;
+  color: #555;
+}
+
+.welcome-msg span {
+  color: #1a73e8;
+  font-weight: bold;
+}
+.money-details-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 0;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .money-details-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 0;
+  }
+}
+
+.list-money-details {
+  background-color: #f0f9e4;
+  padding: 20px;
+  border-radius: 8px;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  color: #4caf50;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+@media (min-width: 768px) {
+  .list-money-details {
+    width: 30%;
+  }
+}
+.money-details-container .list-money-details:nth-child(2) {
+  background-color: #e0f7fa;
+  border: 1.5px dotted #00bcd4;
+}
+
+.money-details-container .list-money-details:nth-child(3) {
+  background-color: #fce4ec;
+  color: #f06292;
+  border: 1.5px dotted #7c3aed;
+}
+
+.transaction-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+@media (min-width: 768px) {
+  .transaction-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+.form-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 98%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+@media (min-width: 768px) {
+  .form-container {
+    width: 48%;
+  }
+}
+
+.form-container h1 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.input-element {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.add-btn {
+  background-color: #1a73e8;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 40%;
+  font-size: 16px;
+}
+
+.add-btn:hover {
+  background-color: #1669c1;
+}
+
+.history-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px dotted #475569;
+  width: 98%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 768px) {
+  .history-container {
+    width: 48%;
+  }
+}
+
+.history-container h1 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.histoy-table {
+  width: 100%;
+  border: 2px dotted #475569;
+}
+
+.column-container {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: #555;
+}
+@media (min-width: 768px) {
+  .column-container {
+    font-size: 18px;
+    font-weight: 600;
+  }
+}
+
+.column-name {
+  width: 33%;
+  text-align: left;
+}
+
+.transaction-history-container {
+  list-style-type: none;
+  padding: 0;
+}
+
+.transaction-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  margin-bottom: 8px;
+}
+
+.transaction-item:nth-child(odd) {
+  background-color: #f1f1f1;
+}

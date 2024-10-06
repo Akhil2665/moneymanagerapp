@@ -1,0 +1,15 @@
+/* Write your CSS here */
+.list-money-details {
+  display: flex;
+  justify-content: space-evenly;
+  list-style-type: none;
+  width: 90%;
+}
+.bg-color-class {
+  background-color: #ecfccb;
+  border: 2px solid #ecfccb;
+}
+.wallet-icon {
+  height: 60px;
+  width: 60px;
+}
