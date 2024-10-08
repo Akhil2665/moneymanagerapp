@@ -20,38 +20,28 @@ const transactionTypeOptions = [
 
 class MoneyManager extends Component {
   state = {
-    balance: 0,
     transactionList: [],
     transactionAmount: '',
     transactionTitle: '',
-    transactionType: 'Income',
-    totalBalance: 0,
-    totalIncome: 0,
-    totalExpenses: 0,
+    transactionType: 'INCOME',
   }
 
   addNewTransaction = event => {
     event.preventDefault()
-    const {
-      transactionTitle,
-      transactionAmount,
-      transactionType,
-      totalIncome,
-      totalExpenses,
-    } = this.state
-    const totalBalance = totalIncome - totalExpenses
+    const {transactionTitle, transactionAmount, transactionType} = this.state
+
     const newTransaction = {
       transactionId: v4(),
-      transactionAmount,
+      transactionAmount: parseInt(transactionAmount),
       transactionTitle,
       transactionType,
     }
+
     this.setState(prevState => ({
       transactionList: [...prevState.transactionList, newTransaction],
       transactionAmount: '',
       transactionTitle: '',
       transactionType: 'Income',
-      totalBalance,
     }))
   }
 
@@ -64,36 +54,30 @@ class MoneyManager extends Component {
   }
 
   onChangeType = event => {
-    this.setState({transactionType: event.target.value})
-  }
-
-  filterTheList = () => {
-    const {transactionList} = this.state
-    const filteredList = transactionList
+    this.setState({transactionType: event.target.value.toUpperCase()})
   }
 
   onDeleteTransaction = id => {
     this.setState(prevState => ({
-      transactionList: prevState.transactionList.filter(eachTransaction => {
-        if (eachTransaction.transactionId !== id) {
-          return true
-        }
-        return false
-      }),
+      transactionList: prevState.transactionList.filter(
+        eachTransaction => eachTransaction.transactionId !== id,
+      ),
     }))
   }
 
   render() {
-    const {
-      transactionList,
-      transactionTitle,
-      transactionAmount,
-      transactionType,
-      totalIncome,
-      totalExpenses,
-    } = this.state
+    const {transactionList, transactionTitle, transactionAmount} = this.state
 
-    const filterList = this.filterTheList()
+    const totalIncome = transactionList
+      .filter(transaction => transaction.transactionType === 'INCOME')
+      .reduce((acc, curr) => acc + curr.transactionAmount, 0)
+
+    const totalExpenses = transactionList
+      .filter(transaction => transaction.transactionType === 'EXPENSES')
+      .reduce((acc, curr) => acc + curr.transactionAmount, 0)
+
+    const totalBalance = totalIncome - totalExpenses
+    console.log(totalBalance, totalExpenses, totalIncome)
 
     return (
       <div className="page-container">
@@ -104,10 +88,7 @@ class MoneyManager extends Component {
           </p>
         </div>
         <ul className="money-details-container">
-          <li
-            className="list-money-details bg-color-class"
-            data-testid="balanceAmount"
-          >
+          <li className="list-money-details bg-color-class" key="balanceAmount">
             <img
               src="https://assets.ccbp.in/frontend/react-js/money-manager/balance-image.png"
               className="wallet-icon "
@@ -115,12 +96,15 @@ class MoneyManager extends Component {
             />
             <div>
               <p>Your Balance</p>
-              <p>Rs 10000</p>
+              <p data-testid="balanceAmount">Rs {totalBalance}</p>
             </div>
           </li>
           {transactionTypeOptions.map(eachObject => (
             <MoneyDetails
               moneyDetailsWallet={eachObject}
+              amountInRupees={
+                eachObject.optionId === 'INCOME' ? totalIncome : totalExpenses
+              }
               key={eachObject.optionId}
             />
           ))}
@@ -144,9 +128,9 @@ class MoneyManager extends Component {
               placeholder="AMOUNT"
               onChange={this.onChangeAmount}
             />
-            <select onChange={this.onChangeType} className="input-element">
+            <select className="input-element" onChange={this.onChangeType}>
               {transactionTypeOptions.map(eachOption => (
-                <option value={eachOption.displayText} id={eachOption.optionId}>
+                <option value={eachOption.optionId} id={eachOption.optionId}>
                   {eachOption.displayText}
                 </option>
               ))}

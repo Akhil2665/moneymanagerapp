@@ -2,8 +2,9 @@
 import './index.css'
 
 const MoneyDetails = props => {
-  const {moneyDetailsWallet} = props
+  const {moneyDetailsWallet, amountInRupees} = props
   const {optionId, displayText} = moneyDetailsWallet
+  console.log(amountInRupees)
 
   const transactionTypeUrl =
     optionId === 'INCOME'
@@ -19,7 +20,9 @@ const MoneyDetails = props => {
       />
       <div>
         <p>Your {displayText}</p>
-        <p data-testId={`${optionId.toLowerCase()}Amount`}>Rs {0}</p>
+        <p data-testid={`${optionId.toLowerCase()}Amount`}>
+          Rs {amountInRupees}
+        </p>
       </div>
     </li>
   )
