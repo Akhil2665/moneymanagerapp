@@ -29,19 +29,23 @@ class MoneyManager extends Component {
   addNewTransaction = event => {
     event.preventDefault()
     const {transactionTitle, transactionAmount, transactionType} = this.state
+    const typeOption = transactionTypeOptions.find(
+      eachTransaction => eachTransaction.optionId === transactionType,
+    )
+    const {displayText} = typeOption
 
     const newTransaction = {
       transactionId: v4(),
       transactionAmount: parseInt(transactionAmount),
       transactionTitle,
-      transactionType,
+      transactionType: displayText,
     }
 
     this.setState(prevState => ({
       transactionList: [...prevState.transactionList, newTransaction],
       transactionAmount: '',
       transactionTitle: '',
-      transactionType: 'Income',
+      transactionType: transactionTypeOptions[0].optionId,
     }))
   }
 
@@ -69,11 +73,11 @@ class MoneyManager extends Component {
     const {transactionList, transactionTitle, transactionAmount} = this.state
 
     const totalIncome = transactionList
-      .filter(transaction => transaction.transactionType === 'INCOME')
+      .filter(transaction => transaction.transactionType === 'Income')
       .reduce((acc, curr) => acc + curr.transactionAmount, 0)
 
     const totalExpenses = transactionList
-      .filter(transaction => transaction.transactionType === 'EXPENSES')
+      .filter(transaction => transaction.transactionType === 'Expenses')
       .reduce((acc, curr) => acc + curr.transactionAmount, 0)
 
     const totalBalance = totalIncome - totalExpenses
