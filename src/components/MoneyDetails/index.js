@@ -12,7 +12,7 @@ const MoneyDetails = props => {
       : 'https://assets.ccbp.in/frontend/react-js/money-manager/expenses-image.png'
 
   return (
-    <li className="list-money-details bg-color-class">
+    <div className="list-money-details bg-color-class">
       <img
         src={transactionTypeUrl}
         className="wallet-icon "
@@ -24,7 +24,7 @@ const MoneyDetails = props => {
           Rs {amountInRupees}
         </p>
       </div>
-    </li>
+    </div>
   )
 }
 

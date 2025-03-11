@@ -1,5 +1,5 @@
 import {Component} from 'react'
-import {v4} from 'uuid'
+import {v4 as uuidv4} from 'uuid'
 import MoneyDetails from '../MoneyDetails'
 import TransactionItem from '../TransactionItem'
 
@@ -35,7 +35,7 @@ class MoneyManager extends Component {
     const {displayText} = typeOption
 
     const newTransaction = {
-      transactionId: v4(),
+      transactionId: uuidv4(),
       transactionAmount: parseInt(transactionAmount),
       transactionTitle,
       transactionType: displayText,
@@ -45,7 +45,7 @@ class MoneyManager extends Component {
       transactionList: [...prevState.transactionList, newTransaction],
       transactionAmount: '',
       transactionTitle: '',
-      transactionType: transactionTypeOptions[0].optionId,
+      transactionType: 'INCOME',
     }))
   }
 
@@ -71,6 +71,7 @@ class MoneyManager extends Component {
 
   render() {
     const {transactionList, transactionTitle, transactionAmount} = this.state
+    console.log(transactionList)
 
     const totalIncome = transactionList
       .filter(transaction => transaction.transactionType === 'Income')
@@ -91,8 +92,8 @@ class MoneyManager extends Component {
             welcome back to your<span>Money Manager </span>{' '}
           </p>
         </div>
-        <ul className="money-details-container">
-          <li className="list-money-details bg-color-class" key="balanceAmount">
+        <div className="money-details-container">
+          <div className="list-money-details bg-color-class" key="balanceAmount">
             <img
               src="https://assets.ccbp.in/frontend/react-js/money-manager/balance-image.png"
               className="wallet-icon "
@@ -102,7 +103,7 @@ class MoneyManager extends Component {
               <p>Your Balance</p>
               <p data-testid="balanceAmount">Rs {totalBalance}</p>
             </div>
-          </li>
+          </div>
           {transactionTypeOptions.map(eachObject => (
             <MoneyDetails
               moneyDetailsWallet={eachObject}
@@ -112,7 +113,7 @@ class MoneyManager extends Component {
               key={eachObject.optionId}
             />
           ))}
-        </ul>
+        </div>
         <div className="transaction-container">
           <form className="form-container" onSubmit={this.addNewTransaction}>
             <h1>Add Transaction</h1>
@@ -134,7 +135,7 @@ class MoneyManager extends Component {
             />
             <select className="input-element" onChange={this.onChangeType}>
               {transactionTypeOptions.map(eachOption => (
-                <option value={eachOption.optionId} id={eachOption.optionId}>
+                <option value={eachOption.optionId} key={eachOption.optionId}>
                   {eachOption.displayText}
                 </option>
               ))}
